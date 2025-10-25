@@ -5,7 +5,6 @@
 package net.minecraftforge.multi_release.gradle.internal;
 
 import net.minecraftforge.gradleutils.shared.EnhancedProblems;
-import org.gradle.api.Project;
 import org.gradle.api.artifacts.Dependency;
 import org.gradle.api.problems.Severity;
 import org.gradle.jvm.toolchain.JavaLanguageVersion;

@@ -4,12 +4,11 @@
  */
 package net.minecraftforge.multi_release.gradle.internal;
 
+import net.minecraftforge.gradleutils.shared.SharedUtil;
 import org.gradle.api.Project;
 import org.gradle.api.plugins.JavaPluginExtension;
 import org.gradle.api.tasks.SourceSet;
 import org.jetbrains.annotations.Nullable;
-
-import net.minecraftforge.gradleutils.shared.SharedUtil;
 
 final class Util extends SharedUtil {
     private Util() { }
