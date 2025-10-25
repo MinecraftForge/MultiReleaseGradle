@@ -18,6 +18,7 @@ import org.gradle.api.component.AdhocComponentWithVariants;
 import org.gradle.api.component.SoftwareComponentFactory;
 import org.gradle.api.file.ArchiveOperations;
 import org.gradle.api.file.DuplicatesStrategy;
+import org.gradle.api.java.archives.Manifest;
 import org.gradle.api.model.ObjectFactory;
 import org.gradle.api.provider.Provider;
 import org.gradle.api.provider.ProviderFactory;
@@ -74,6 +75,8 @@ abstract class MultiReleaseContainerImpl implements MultiReleaseContainerInterna
 
             task.with(jar.get());
             task.setManifest(jar.get().getManifest());
+
+            task.manifest(Closures.<Manifest>consumer(manifest -> manifest.getAttributes().put("Multi-Release", "true")));
         });
     }
 

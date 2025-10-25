@@ -62,7 +62,7 @@ tasks.named('shadowJar', ShadowJar) {
 }
 
 changelog {
-    fromBase()
+    from '0.1'
 }
 
 gradlePlugin {
