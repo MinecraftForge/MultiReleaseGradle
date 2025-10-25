@@ -69,7 +69,7 @@ abstract class MultiReleaseContainerImpl implements MultiReleaseContainerInterna
     /* SETUP */
 
     private TaskProvider<Jar> createJar() {
-        return getProject().getTasks().register("multiRelease" + StringGroovyMethods.capitalize(jar.getName()), Jar.class, task -> {
+        var ret = getProject().getTasks().register("multiRelease" + StringGroovyMethods.capitalize(jar.getName()), Jar.class, task -> {
             task.setGroup(LifecycleBasePlugin.BUILD_GROUP);
             task.dependsOn(jar);
 
@@ -78,6 +78,10 @@ abstract class MultiReleaseContainerImpl implements MultiReleaseContainerInterna
 
             task.manifest(Closures.<Manifest>consumer(manifest -> manifest.getAttributes().put("Multi-Release", "true")));
         });
+
+        getProject().getTasks().named(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configure(task -> task.dependsOn(ret));
+
+        return ret;
     }
 
     private NamedDomainObjectProvider<ConsumableConfiguration> createConfiguration(NamedDomainObjectProvider<? extends Configuration> baseConfiguration) {
