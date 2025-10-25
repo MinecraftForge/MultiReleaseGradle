@@ -75,8 +75,9 @@ abstract class MultiReleaseContainerImpl implements MultiReleaseContainerInterna
 
             task.with(jar.get());
             task.setManifest(jar.get().getManifest());
-
             task.manifest(Closures.<Manifest>consumer(manifest -> manifest.getAttributes().put("Multi-Release", "true")));
+
+            task.getArchiveClassifier().convention("mr");
         });
 
         getProject().getTasks().named(LifecycleBasePlugin.ASSEMBLE_TASK_NAME).configure(task -> task.dependsOn(ret));
